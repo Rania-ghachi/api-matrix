@@ -22,7 +22,7 @@ pipeline {
 
 
                 }
-        /* stage('archivage') {
+        stage('archivage') {
                     steps {
                         bat '''
                         mkdir doc
@@ -40,14 +40,14 @@ pipeline {
                             reportName: 'Documentation'
                         ])
                     }
-                } */
+                }
 
-        /* stage('build') {
+         stage('build') {
             steps {
                 bat 'C://apache-maven-3.9.12//bin//mvn package'
                 archiveArtifacts 'target *//*.jar'
             }
-             *//* post {
+            /* post {
                 failure {
                     mail(
                         subject: "Build echec",
@@ -61,11 +61,11 @@ pipeline {
                         body: "Le build a reussi",
                         to: "assia.cntsid@gmail.com"
                     )
-                }
-            }*//*
+                } */
+            }
         }
 
- *//*         stage('documentation') {
+ /*         stage('documentation') {
             steps {
                 bat '''
                 if not exist doc mkdir doc
