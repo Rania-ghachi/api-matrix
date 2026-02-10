@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "Features",plugin={"json:target/example-report.json"}
 )
+
+//test
 public class ExampleTest {
 
 }
