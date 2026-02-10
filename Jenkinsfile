@@ -7,12 +7,12 @@ pipeline {
 
                     steps {
                            bat 'C://apache-maven-3.9.12//bin//mvn test'
-                           junit 'target/surefire-reports/test-*.xml'
+                           junit 'target/surefire-reports/*.xml'
 
                           }
 
                 }
-        stage('archivage') {
+        /* stage('archivage') {
                     steps {
                         bat '''
                         mkdir doc
@@ -30,7 +30,7 @@ pipeline {
                             reportName: 'Documentation'
                         ])
                     }
-                }
+                } */
 
         /* stage('build') {
             steps {
