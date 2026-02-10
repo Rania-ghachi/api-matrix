@@ -22,7 +22,7 @@ pipeline {
 
 
                 }
-        stage('archivage') {
+/*         stage('archivage') {
                     steps {
 
                         bat '''
@@ -42,7 +42,7 @@ pipeline {
                             reportName: 'Documentation'
                         ])
                     }
-        }
+        } */
 
          stage('build') {
             steps {
