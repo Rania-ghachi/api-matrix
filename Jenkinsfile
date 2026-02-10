@@ -140,8 +140,9 @@ pipeline {
                                     to: "assia.cntsid@gmail.com"
                                 )
                             }
+                            */
 
-        } */
+        }
 
 
     }
