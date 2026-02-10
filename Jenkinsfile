@@ -9,7 +9,7 @@ pipeline {
                            bat 'C://apache-maven-3.9.12//bin//mvn test'
                            junit 'target/surefire-reports/*.xml'
                            cucumber reportTitle: 'API Report',
-                                  fileIncludePattern: 'target/example-report.json',
+                                  fileIncludePattern: 'target/example-report.json'
 
                           }
 
