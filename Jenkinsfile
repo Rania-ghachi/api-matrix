@@ -72,7 +72,7 @@ pipeline {
                 bat '''
                 if not exist doc mkdir doc
                 xcopy target\\site\\* doc\\ /E /I /Y
-                powershell Compress-Archive -Path doc\\* -DestinationPath doc.zip -Force
+                powershell Compress-Archive -Path doc\\* -DestinationPath doc.zip
                 '''
                 archiveArtifacts 'doc.zip'
 
@@ -80,7 +80,7 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportDir: 'target/site/apidocs',
+                    reportDir: 'target/site/jacoco',
                     reportFiles: 'index.html',
                     reportName: 'Documentation'
                 ])
