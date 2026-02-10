@@ -40,7 +40,7 @@ pipeline {
                             reportName: 'Documentation'
                         ])
                     }
-                }
+        }
 
          stage('build') {
             steps {
@@ -62,7 +62,7 @@ pipeline {
                         to: "assia.cntsid@gmail.com"
                     )
                 } */
-            }
+
         }
 
  /*         stage('documentation') {
