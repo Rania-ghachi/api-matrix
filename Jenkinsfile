@@ -67,7 +67,7 @@ pipeline {
 
         }
 
- /*         stage('documentation') {
+          stage('documentation') {
             steps {
                 bat '''
                 if not exist doc mkdir doc
@@ -85,7 +85,7 @@ pipeline {
                     reportName: 'Documentation'
                 ])
             }
-        } *//*
+        } /*
 
 
            stage('parallel') {
