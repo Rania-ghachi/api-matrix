@@ -112,20 +112,35 @@ pipeline {
 
 
 
+*/
 
-
-        stage('deploy') {
+        /* stage('deploy') {
             when {
                 branch 'master'
                   }
             steps {
                    bat 'docker-compose up --build -d'
-                    //archiveArtifacts 'target *//*.jar'
+                    //archiveArtifacts 'target *//*  *//*.jar'
                     //coment
                   }
+            post {
+                            failure {
+                                mail(
+                                    subject: "Build echec",
+                                    body: "Le build a echoue",
+                                    to: "assia.cntsid@gmail.com"
+                                )
+                            }
+                            success {
+                                mail(
+                                    subject: "Build reussi",
+                                    body: "Le build a reussi",
+                                    to: "assia.cntsid@gmail.com"
+                                )
+                            }
 
-        } */
-
+        }
+ */
 
     }
 }
