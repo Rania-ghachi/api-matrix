@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features = "Features",plugin={"json:target/example-report.json"}
 )
 
-//test
+//test class
 public class ExampleTest {
 
 }
