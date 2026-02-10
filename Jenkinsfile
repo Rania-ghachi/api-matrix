@@ -24,7 +24,9 @@ pipeline {
                 }
         stage('archivage') {
                     steps {
+
                         bat '''
+                        mvn javadoc:javadoc
                         mkdir doc
                         xcopy target\\site\\* doc\\ /E /I /Y
                         powershell Compress-Archive -Path doc\\* -DestinationPath doc.zip -Force
@@ -114,7 +116,7 @@ pipeline {
 
 */
 
-        /* stage('deploy') {
+         stage('deploy') {
             when {
                 branch 'master'
                   }
@@ -123,7 +125,7 @@ pipeline {
                     //archiveArtifacts 'target *//*  *//*.jar'
                     //coment
                   }
-            post {
+            /* post {
                             failure {
                                 mail(
                                     subject: "Build echec",
@@ -139,8 +141,8 @@ pipeline {
                                 )
                             }
 
-        }
- */
+        } */
+
 
     }
 }
