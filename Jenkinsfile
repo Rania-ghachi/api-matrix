@@ -365,20 +365,11 @@ stage('notification') {
             //                          """
 
                  withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                     bat """
-                     git tag -a v1.4 -m "Release version %version%"
-                     git push origin v%version%
-                     curl -X POST https://github.com/Rania-ghachi/api-matrix/releases \
-                       -H "Authorization: Bearer $GITHUB_TOKEN" \
-                                                                        -H "Accept: application/vnd.github+json" \
-                                                                        -H "Content-Type: application/json" \
-                                                                        -d '{
-                                                                          "tag_name": "v1.4",
-                                                                          "name": "Release v1.4",
-                                                                          "body": "Production release",
-                                                                          "draft": false,
-                                                                          "prerelease": false
-                     """
+                     bat """curl -X POST https://api.github.com/repos/Rania-ghachi/api-matrix/releases \
+                              -H "Authorization: token %GITHUB_TOKEN%" \
+                              -H "Accept: application/vnd.github+json" \
+                              -H "Content-Type: application/json" \
+                              -d "{\\"tag_name\\": \\"v1.4\\", \\"name\\": \\"Release v1.4\\", \\"body\\": \\"Production release\\", \\"draft\\": false, \\"prerelease\\": false}"""
                  }
              }
          }
