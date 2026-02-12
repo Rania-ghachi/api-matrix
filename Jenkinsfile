@@ -350,21 +350,6 @@ stage('notification') {
                          git push origin v%version%
                          """
 
-         /*                 bat """
-                         curl -X POST https://api.github.com/repos/api-matrix/releases \
-                           -H "Authorization: Bearer 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" \
-                           -H "Accept: application/vnd.github+json" \
-                           -H "Content-Type: application/json" \
-                           -d '{
-                             "tag_name": "v1.0",
-                             "name": "Release v1.0",
-                             "body": "Production release",
-                             "draft": false,
-                             "prerelease": false
-                           }'
-
-                         """ */
-
 
                          bat """
                             curl -X POST https://github.com/Rania-ghachi/api-matrix/releases ^
@@ -374,9 +359,8 @@ stage('notification') {
                             -d "{\\"tag_name\\":\\"v%version%\\",\\"name\\":\\"Release v%version%\\",\\"body\\":\\"Production release\\",\\"draft\\":false,\\"prerelease\\":false}"
                          """
 
-
-
                      }
+
              steps {
                  withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                      bat """
