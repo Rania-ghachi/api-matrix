@@ -191,7 +191,7 @@ pipeline {
 
     }////
 
-        stage('release') {
+        stages('release') {
             steps {
                 bat """
                 git tag -a v%version% -m "Release version %version%"
