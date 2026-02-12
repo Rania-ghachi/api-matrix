@@ -184,13 +184,6 @@ pipeline {
                        to: "rina.ra.1804@gmail.com"
                        )
                      }
-            steps {
-                  mail(
-                      subject: "Build reussi",
-                      body: "Le build a reussi",
-                      to: "rina.ra.1804@gmail.com"
-                      )
-                    }
 
         }
         }
