@@ -359,22 +359,22 @@ stage('notification') {
                      }*/
 
              steps {//
-                 bat """
-                                      git tag -a v%version% -m "Release version %version%"
-                                      git push origin v%version%
-                                      """
+             //    bat """
+              //                        git tag -a v%version% -m "Release version %version%"
+            //                          git push origin v%version%
+            //                          """
 
                  withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                      bat """
-                     git tag -a v%version% -m "Release version %version%"
+                     git tag -a v1.3 -m "Release version %version%"
                      git push origin v%version%
-                     curl -X POST https://github.com/Rania-ghachi/api-matrix/releases \\
+                     curl -X POST https://github.com/Rania-ghachi/api-matrix/releases \
                        -H "Authorization: Bearer $GITHUB_TOKEN" \
                                                                         -H "Accept: application/vnd.github+json" \
                                                                         -H "Content-Type: application/json" \
                                                                         -d '{
-                                                                          "tag_name": "v%version%",
-                                                                          "name": "Release v%version%",
+                                                                          "tag_name": "v1.3",
+                                                                          "name": "Release v1.3%,
                                                                           "body": "Production release",
                                                                           "draft": false,
                                                                           "prerelease": false
