@@ -217,7 +217,7 @@ pipeline {
                    -H "Authorization: Bearer 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" ^
                    -H "Accept: application/vnd.github+json" ^
                    -H "Content-Type: application/json" ^
-                   -d "{\\"tag_name\\":\\"v%VERSION%\\",\\"name\\":\\"Release v%VERSION%\\",\\"body\\":\\"Production release\\",\\"draft\\":false,\\"prerelease\\":false}"
+                   -d "{\\"tag_name\\":\\"v%version%\\",\\"name\\":\\"Release v%version%\\",\\"body\\":\\"Production release\\",\\"draft\\":false,\\"prerelease\\":false}"
                 """
 
 
