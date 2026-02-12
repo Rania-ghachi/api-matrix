@@ -181,7 +181,7 @@ pipeline {
                   mail(
                        subject: "Build echec",
                        body: "Le build a echoue",
-                       to: "assia.cntsid@gmail.com"
+                       to: "rina.ra.1804@gmail.com"
                        )
                      }
             success {
