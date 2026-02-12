@@ -178,8 +178,8 @@ pipeline {
 //
             steps {
                   mail(
-                       subject: "Build echec",
-                       body: "Le build a echoue",
+                       subject: "Build a réussi",
+                       body: "Le build a réussi",
                        to: "rina.ra.1804@gmail.com"
                        )
                      }
