@@ -148,7 +148,7 @@ pipeline {
         stage('slack') {
 
                     steps {
-                           powershell '''curl -X POST -H 'Content-type: application/json'
+                           bat '''curl -X POST -H 'Content-type: application/json'
                            --data '{"text":"Hello, World!"}'
                            "$slack_webhook"'''
 
