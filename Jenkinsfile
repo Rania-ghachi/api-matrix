@@ -67,7 +67,7 @@ pipeline {
 
         }
 
-          stage('documentation') {
+          /*stage('documentation') {
             steps {
                 bat '''
                 if not exist doc mkdir doc
@@ -144,6 +144,17 @@ pipeline {
                             */
 
         }
+
+        stage('slack') {
+
+                    steps {
+                           //bat 'docker-compose up --build -d'
+                           bat '''curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}'
+                           https://hooks.slack.com/services/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'''
+
+                          }
+
+                }
 
 
     }
