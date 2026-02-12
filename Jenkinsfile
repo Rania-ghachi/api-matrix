@@ -116,7 +116,7 @@ pipeline {
 
 */
 
-         stage('deploy') {
+         /*stage('deploy') {
             when {
                 branch 'master'
                   }
@@ -141,9 +141,9 @@ pipeline {
                                     to: "assia.cntsid@gmail.com"
                                 )
                             }
-                            */
 
-        }
+
+        }*/
 
         stage('slack') {
 
