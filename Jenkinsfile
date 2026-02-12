@@ -165,10 +165,9 @@ pipeline {
 
                                         steps {
                                             bat """
-                                            curl.exe -X POST -H "Content-type: application/json"
-                                            --data "{\\"text\\":\\"Hello, World!\\"}"
-                                            "%slack_webhook%"
+                                            curl.exe -X POST -H "Content-type: application/json" --data "{\\"text\\":\\"Hello Jenkins\\"}" "%slack_webhook%"
                                             """
+
 
                                         }
 
