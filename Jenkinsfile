@@ -213,7 +213,7 @@ pipeline {
                 """ */
 
                 bat """
-                   curl -X POST https://api.github.com/repos/issadlounis/api-matrix/releases ^
+                   curl -X POST https://api.github.com/repos/api-matrix/releases ^
                    -H "Authorization: Bearer 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" ^
                    -H "Accept: application/vnd.github+json" ^
                    -H "Content-Type: application/json" ^
