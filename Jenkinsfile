@@ -194,8 +194,8 @@ pipeline {
         stage('release') {
             steps {
                 bat """
-                git tag -a v%version% -m "Release version %version%"
-                git push origin v%version%
+                git tag -a v1.0 "Release version %version%"
+                git push origin v1.0
                 """
 
             }
