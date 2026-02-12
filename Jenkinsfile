@@ -369,10 +369,15 @@ stage('notification') {
                      git tag -a v%version% -m "Release version %version%"
                      git push origin v%version%
                      curl -X POST https://github.com/Rania-ghachi/api-matrix/releases \\
-                       -H "Authorization: Bearer $GITHUB_TOKEN" \\
-                       -H "Accept: application/vnd.github+json" \\
-                       -H "Content-Type: application/json" \\
-                       -d '{ "tag_name": "v%version%", "name": "Release v%version%", "body": "Production release", "draft": false, "prerelease": false }'
+                       -H "Authorization: Bearer $GITHUB_TOKEN" \
+                                                                        -H "Accept: application/vnd.github+json" \
+                                                                        -H "Content-Type: application/json" \
+                                                                        -d '{
+                                                                          "tag_name": "v%version%",
+                                                                          "name": "Release v%version%",
+                                                                          "body": "Production release",
+                                                                          "draft": false,
+                                                                          "prerelease": false
                      """
                  }
              }
