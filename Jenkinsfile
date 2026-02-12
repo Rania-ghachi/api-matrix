@@ -232,13 +232,14 @@ pipeline {
                                       -H "Accept: application/vnd.github+json" \
                                       -H "Content-Type: application/json" \
                                       -d '{
-                                        "tag_name": "v1.1",
-                                        "name": "Release v1.1",
+                                        "tag_name": "v%version%",
+                                        "name": "Release v%version%",
                                         "body": "Production release",
                                         "draft": false,
                                         "prerelease": false
                                       }'
                                 '''
+             }
              }
 
 
