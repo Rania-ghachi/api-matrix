@@ -210,7 +210,7 @@ pipeline {
                     "prerelease": false
                   }'
 
-                """ */
+                """ ***/
 
                 bat """
                    curl -X POST https://api.github.com/repos/api-matrix/releases ^
