@@ -141,6 +141,7 @@ pipeline {
                                     to: "assia.cntsid@gmail.com"
                                 )
                             }
+            }
 
 
         }*/
@@ -149,13 +150,50 @@ pipeline {
 
                     steps {
                         bat """
-                        curl.exe -X POST -H "Content-type: application/json" --data "{\\"text\\":\\"Hello, World!\\"}" "%slack_webhook%"
+                        curl.exe -X POST -H "Content-type: application/json"
+                        --data "{\\"text\\":\\"Hello, World!\\"}"
+                        "%slack_webhook%"
                         """
 
-
-                          }
+                    }
 
                 }
+        stage('notification') {
+              parallel {
+
+                    stage('slack') {
+
+                                        steps {
+                                            bat """
+                                            curl.exe -X POST -H "Content-type: application/json"
+                                            --data "{\\"text\\":\\"Hello, World!\\"}"
+                                            "%slack_webhook%"
+                                            """
+
+                                        }
+
+                                    }
+
+
+         post {
+
+            failure {
+                  mail(
+                       subject: "Build echec",
+                       body: "Le build a echoue",
+                       to: "assia.cntsid@gmail.com"
+                       )
+                     }
+            success {
+                  mail(
+                      subject: "Build reussi",
+                      body: "Le build a reussi",
+                      to: "rina.ra.1804@gmail.com"
+                      )
+                    }
+
+        }
+        }
 
 
     }
