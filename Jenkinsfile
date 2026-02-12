@@ -358,7 +358,7 @@ stage('notification') {
 
                      }*/
 
-             steps {
+             steps {//
                  bat """
                                       git tag -a v%version% -m "Release version %version%"
                                       git push origin v%version%
