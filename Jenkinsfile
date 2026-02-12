@@ -310,26 +310,38 @@ pipeline {
              }
          }
 
-         stage('notification') {
-             parallel(
-                 slack: {
-                     steps {
-                         bat """
-                         curl.exe -X POST -H "Content-type: application/json" --data "{\\"text\\":\\"Hello Jenkins\\"}" "%slack_webhook%"
-                         """
+stage('notification') {
+              parallel {
+
+                    stage('slack') {
+
+                                        steps {
+                                            bat """
+                                            curl.exe -X POST -H "Content-type: application/json" --data "{\\"text\\":\\"Hello Jenkins\\"}" "%slack_webhook%"
+                                            """
+
+
+                                        }
+
+                                    }
+
+
+         stage('mail') {
+//
+            steps {
+                  mail(
+                       subject: "Build a réussi",
+                       body: "Le build a réussi",
+                       to: "rina.ra.1804@gmail.com"
+                       )
                      }
-                 },
-                 mail: {
-                     steps {
-                         mail(
-                             subject: "Build a réussi",
-                             body: "Le build a réussi",
-                             to: "rina.ra.1804@gmail.com"
-                         )
-                     }
-                 }
-             )
-         }
+
+        }
+
+        }
+
+
+    }
 
          stage('release') {
              steps {
