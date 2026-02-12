@@ -176,7 +176,7 @@ pipeline {
 
 
          stage('mail') {
-
+//
             steps {
                   mail(
                        subject: "Build echec",
