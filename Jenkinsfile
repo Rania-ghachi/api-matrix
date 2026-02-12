@@ -374,7 +374,7 @@ stage('notification') {
                                                                         -H "Content-Type: application/json" \
                                                                         -d '{
                                                                           "tag_name": "v1.3",
-                                                                          "name": "Release v1.3%,
+                                                                          "name": "Release v1.3v",
                                                                           "body": "Production release",
                                                                           "draft": false,
                                                                           "prerelease": false
