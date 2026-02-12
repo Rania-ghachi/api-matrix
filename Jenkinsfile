@@ -148,7 +148,6 @@ pipeline {
         stage('slack') {
 
                     steps {
-                           //bat 'docker-compose up --build -d'
                            powershell '''curl -X POST -H 'Content-type: application/json'
                            --data '{"text":"Hello, World!"}'
                            "$slack_webhook"'''
