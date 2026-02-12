@@ -197,6 +197,20 @@ pipeline {
                 git tag -a v%version% -m "Release version %version%"
                 git push origin v%version%
                 """
+                bat """
+                curl -X POST https://api.github.com/repos/api-matrix/releases \
+                  -H "Authorization: Bearer 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" \
+                  -H "Accept: application/vnd.github+json" \
+                  -H "Content-Type: application/json" \
+                  -d '{
+                    "tag_name": "v1.0",
+                    "name": "Release v1.0",
+                    "body": "Production release",
+                    "draft": false,
+                    "prerelease": false
+                  }'
+
+                """
             }
         }
 
