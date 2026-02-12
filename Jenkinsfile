@@ -146,7 +146,7 @@ pipeline {
 
         }*/
 
-        stage('slack') {
+/*         stage('slack') {
 
                     steps {
                         bat """
@@ -157,7 +157,7 @@ pipeline {
 
                     }
 
-                }
+                } */
         stage('notification') {
               parallel {
 
@@ -175,16 +175,16 @@ pipeline {
                                     }
 
 
-         post {
+         stage('mail') {
 
-            failure {
+            steps {
                   mail(
                        subject: "Build echec",
                        body: "Le build a echoue",
                        to: "rina.ra.1804@gmail.com"
                        )
                      }
-            success {
+            steps {
                   mail(
                       subject: "Build reussi",
                       body: "Le build a reussi",
