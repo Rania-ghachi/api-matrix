@@ -344,11 +344,8 @@ stage('notification') {
     }
 
          stage('release') {
-         steps {
-                         bat """
-                         git tag -a v%version% -m "Release version %version%"
-                         git push origin v%version%
-                         """
+       /*  steps {
+
 
 
                          bat """
@@ -359,9 +356,14 @@ stage('notification') {
                             -d "{\\"tag_name\\":\\"v%version%\\",\\"name\\":\\"Release v%version%\\",\\"body\\":\\"Production release\\",\\"draft\\":false,\\"prerelease\\":false}"
                          """
 
-                     }
+                     }*/
 
              steps {
+                 bat """
+                                      git tag -a v%version% -m "Release version %version%"
+                                      git push origin v%version%
+                                      """
+
                  withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                      bat """
                      git tag -a v%version% -m "Release version %version%"
