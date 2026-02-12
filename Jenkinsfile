@@ -191,5 +191,17 @@ pipeline {
 
     }
 
+        stage('git') {
+
+                    steps {
+                        bat """
+                       git tag - a v1.0 -m  "%version%"
+                       git push origin v1.0
+                        """
+
+                    }
+
+                }
+
     }
 }
