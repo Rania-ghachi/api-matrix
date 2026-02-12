@@ -1,3 +1,4 @@
+/*
 pipeline {
     agent any
 
@@ -7,7 +8,8 @@ pipeline {
 
                     steps {
                            bat 'C://apache-maven-3.9.12//bin//mvn test'
-                           junit 'target/surefire-reports/*.xml'
+                           junit 'target/surefire-reports */
+/*.xml'
                            cucumber reportTitle: 'API Report',
                                   fileIncludePattern: 'target/example-report.json'
                            recordCoverage(tools: [[parser: 'JACOCO']],
@@ -22,6 +24,7 @@ pipeline {
 
 
                 }
+ */
 /*         stage('archivage') {
                     steps {
 
@@ -42,14 +45,17 @@ pipeline {
                             reportName: 'Documentation'
                         ])
                     }
-        } */
+        } *//*
+
 
          stage('build') {
             steps {
                 bat 'C://apache-maven-3.9.12//bin//mvn package'
-                archiveArtifacts 'target/*.jar'
+                archiveArtifacts 'target */
+/*.jar'
             }
-            /* post {
+             */
+/* post {
                 failure {
                     mail(
                         subject: "Build echec",
@@ -63,11 +69,13 @@ pipeline {
                         body: "Le build a reussi",
                         to: "assia.cntsid@gmail.com"
                     )
-                } */
+                } *//*
+
 
         }
 
-          /*stage('documentation') {
+           */
+/*stage('documentation') {
             steps {
                 bat '''
                 if not exist doc mkdir doc
@@ -85,7 +93,8 @@ pipeline {
                     reportName: 'Documentation'
                 ])
             }
-        } /*
+        }  */
+/*
 
 
            stage('parallel') {
@@ -114,19 +123,26 @@ pipeline {
 
 
 
-*/
+*//*
 
-         /*stage('deploy') {
+
+          */
+/*stage('deploy') {
             when {
                 branch 'master'
                   }
             steps {
                    //bat 'docker-compose up --build -d'
                    bat 'mvn deploy'
-                    //archiveArtifacts 'target *//*  *//*.jar'
+                    //archiveArtifacts 'target *//*
+ */
+/*  *//*
+ */
+/*.jar'
                     //coment
                   }
-            /* post {
+             */
+/* post {
                             failure {
                                 mail(
                                     subject: "Build echec",
@@ -144,8 +160,10 @@ pipeline {
             }
 
 
-        }*/
+        }*//*
 
+
+ */
 /*         stage('slack') {
 
                     steps {
@@ -157,7 +175,8 @@ pipeline {
 
                     }
 
-                } */
+                } *//*
+
         stage('notification') {
               parallel {
 
@@ -189,7 +208,7 @@ pipeline {
         }
 
 
-    }////
+    }
 
         stage('release') {
             steps {
@@ -197,6 +216,7 @@ pipeline {
                 git tag -a v%version% -m "Release version %version%"
                 git push origin v%version%
                 """
+ */
 /*                 bat """
                 curl -X POST https://api.github.com/repos/api-matrix/releases \
                   -H "Authorization: Bearer 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" \
@@ -210,7 +230,8 @@ pipeline {
                     "prerelease": false
                   }'
 
-                """ ***/
+                """ ***//*
+
 
                 bat """
                    curl -X POST https://github.com/Rania-ghachi/api-matrix/releases ^
@@ -227,7 +248,7 @@ pipeline {
             //
                         steps {
                                         withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                                            sh '''
+                                            bat '''
                                                 curl -X POST https://github.com/Rania-ghachi/api-matrix/releases \
                                                   -H "Authorization: Bearer $GITHUB_TOKEN" \
                                                   -H "Accept: application/vnd.github+json" \
@@ -254,3 +275,78 @@ pipeline {
 
     }
 }
+ */
+
+
+
+
+ pipeline {
+     agent any
+
+     stages {
+
+         stage('test') {
+             steps {
+                 bat 'C://apache-maven-3.9.12//bin//mvn test'
+                 junit 'target/surefire-reports/*.xml'
+                 cucumber reportTitle: 'API Report',
+                         fileIncludePattern: 'target/example-report.json'
+                 recordCoverage(
+                     tools: [[parser: 'JACOCO']],
+                     id: 'jacoco', name: 'JaCoCo Coverage',
+                     sourceCodeRetention: 'EVERY_BUILD',
+                     qualityGates: [
+                         [threshold: 60.0, metric: 'LINE', baseline: 'PROJECT', unstable: true],
+                         [threshold: 60.0, metric: 'BRANCH', baseline: 'PROJECT', unstable: true]
+                     ]
+                 )
+             }
+         }
+
+         stage('build') {
+             steps {
+                 bat 'C://apache-maven-3.9.12//bin//mvn package'
+                 archiveArtifacts 'target/*.jar'
+             }
+         }
+
+         stage('notification') {
+             parallel(
+                 slack: {
+                     steps {
+                         bat """
+                         curl.exe -X POST -H "Content-type: application/json" --data "{\\"text\\":\\"Hello Jenkins\\"}" "%slack_webhook%"
+                         """
+                     }
+                 },
+                 mail: {
+                     steps {
+                         mail(
+                             subject: "Build a réussi",
+                             body: "Le build a réussi",
+                             to: "rina.ra.1804@gmail.com"
+                         )
+                     }
+                 }
+             )
+         }
+
+         stage('release') {
+             steps {
+                 withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                     bat """
+                     git tag -a v%version% -m "Release version %version%"
+                     git push origin v%version%
+                     curl -X POST https://github.com/Rania-ghachi/api-matrix/releases \\
+                       -H "Authorization: Bearer $GITHUB_TOKEN" \\
+                       -H "Accept: application/vnd.github+json" \\
+                       -H "Content-Type: application/json" \\
+                       -d '{ "tag_name": "v%version%", "name": "Release v%version%", "body": "Production release", "draft": false, "prerelease": false }'
+                     """
+                 }
+             }
+         }
+
+     }
+ }
+
